@@ -52,7 +52,7 @@ The 'myShifts' object is then passed to the following functions:
 &nbsp;
 &nbsp;
 &nbsp;
-####'PlotStructureMax(MeanSample, Shifts, ..)`
+####`PlotStructureMax(MeanSample, Shifts, ..)`
 
 Plots the results of 
 &nbsp;
@@ -77,7 +77,7 @@ A graph of the structural maximum alignments, including the pre-aligned trace. T
 &nbsp;
 &nbsp;
 &nbsp;
-####'ApplyStructMax(Shifts, Sample, ..)`
+####`ApplyStructMax(Shifts, Sample, ..)`
 
 Applies the alignments discovered in `StructureMax` to another sample.
 &nbsp;
@@ -99,7 +99,7 @@ The left or right struct. max aligned version of a sample.
 &nbsp;
 &nbsp;
 &nbsp;
-####'ApplyDualStructMax(Shifts, Sample)`
+####`ApplyDualStructMax(Shifts, Sample)`
 
 Applies both left and right hand structural maximum alignments, and merges the two region-sets at the mid-point. Useful for doing bootstrapping stats tests on the full aligned structures.
 &nbsp;
@@ -119,7 +119,7 @@ A matrix, equal in dimensions to 'Sample', containing the left half of the left-
 &nbsp;
 &nbsp;
 &nbsp;
-####'SaveShifts(Shifts, prefix)`
+####`SaveShifts(Shifts, prefix)`
 
 Utility function to save the alignment shifts object to file, to be re-loaded later. Shifts saved and re-loaded in the way CANNOT be used with `PlotStructureMax`
 &nbsp;
@@ -139,7 +139,7 @@ A file containing alignment shift data that can be loaded later.
 &nbsp;
 &nbsp;
 &nbsp;
-####'LoadShifts(filename)`
+####`LoadShifts(filename)`
 
 Utility function to re-load the alignment shifts from file. Shifts saved and re-loaded in the way CANNOT be used with `PlotStructureMax`
 &nbsp;
@@ -157,7 +157,7 @@ A file containing alignment shift data that can be loaded later.
 &nbsp;
 &nbsp;
 &nbsp;
-####'FindPeaks(meanSample)`
+####`FindPeaks(meanSample)`
 
 Utility function to assist in the identification of -1 and +1 peaks for structural maximum alignment. Searches for peaks around the centre of the region.
 &nbsp;
@@ -173,6 +173,9 @@ Output:
 
 A short vector containing the indices of peaks found near the centre of the region. May be helpful in identifying -1 and +1 peak indices for `StructureMax`
 &nbsp;
+
 &nbsp;
+
 &nbsp;
+
 ##*Lots more to come..*
