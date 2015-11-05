@@ -18,9 +18,7 @@ Script: StructureMax.R
 
 R Pre-Reqs: Hmisc, nnet
 &nbsp;
-
 &nbsp;
-
 ####`StructureMax(MeanSample, PeakL, PeakR, ..)`
 
 Iteratively adjusts the alignment of each chromatin region to obtain the most-structured representation of cumulative nucleosome positions. Each region is first spline-interpolated to a much higher resolution, a range of potential shifts are then tested on that region.
@@ -39,28 +37,25 @@ Iteratively adjusts the alignment of each chromatin region to obtain the most-st
 
 * splineSize	-	Integer. Resolution of the spline interpolation. higher=better/more memory. **Def=10000**
 
-
+&nbsp;
 Use:
 
 ```
 myShifts = StuctureMax(meansMatrix, 144, 156, splineSize=5000)
 ```
-
+&nbsp;
 Output:
 
 'myShifts' is an object containing the two vectors of alignment shifts, and two matrices of interpolated and shifted regions. One is shifted to left hand maximum, the other shifted to the right hand maximum. This object also contains some contextual information relating to the alignment process which can be used in downstream functions.
 
 The 'myShifts' object is then passed to the following functions:
-
 &nbsp;
-
 &nbsp;
-
-
+&nbsp;
 ####`PlotStructureMax(MeanSample, Shifts, ..)`
 
 Plots the results of 
-
+&nbsp;
 * MeanSample	-	The original matrix supplied to `StructureMax`
 
 * Shifts		-	The object returned by the `StructureMax` function
@@ -69,123 +64,111 @@ Plots the results of
 
 * prefix		-	String. Prefix for the saved pdf filename. Format "prefixLRshifts.pdf". **Def=""**
 
-
+&nbsp;
 Use:
 
 ```
 PlotStructureMax(meansMatrix, myShifts, TRUE, "test1_")
 ```
-
+&nbsp;
 Output:
 
 A graph of the structural maximum alignments, including the pre-aligned trace. This also shows the relationship between the structural maximum and the central point of the region of interest. Usually this is the 'Transcription Start Site'.
-
 &nbsp;
-
 &nbsp;
-
+&nbsp;
 ####`ApplyStructMax(Shifts, Sample, ..)`
 
 Applies the alignments discovered in `StructureMax` to another sample.
-
+&nbsp;
 * Shifts		-	The output object from `StructureMax`
 
 * Sample		-	The matrix of feature-oriented chromatin structure regions for a single sample
 
 * Right			-	TRUE/FALSE, flag determines whether the alignement takes place on the left or right hand structural maximum. **Def=FALSE**
-
+&nbsp;
 Use:
 
 ```
 Samp1Left = ApplyStructMax(myShifts, Samp1, FALSE)
 ``` 
-
+&nbsp;
 Output:
 
 The left or right struct. max aligned version of a sample.
-
 &nbsp;
-
 &nbsp;
-
+&nbsp;
 ####`ApplyDualStructMax(Shifts, Sample)`
 
 Applies both left and right hand structural maximum alignments, and merges the two region-sets at the mid-point. Useful for doing bootstrapping stats tests on the full aligned structures.
-
+&nbsp;
 * Shifts		-	The output object from `StructureMax`
 
 * Sample		-	The matrix of feature-oriented chromatin structure regions for a single sample
-
+&nbsp;
 Use:
 
 ```
 Samp1Both = ApplyDualStructMax(myShifts, Samp1)
 ```
-
+&nbsp;
 Output:
 
 A matrix, equal in dimensions to 'Sample', containing the left half of the left-hand structural maximum, and the right half of the right-hand structural maximum
-
 &nbsp;
-
 &nbsp;
-
+&nbsp;
 ####`SaveShifts(Shifts, prefix)`
 
 Utility function to save the alignment shifts object to file, to be re-loaded later. Shifts saved and re-loaded in the way CANNOT be used with `PlotStructureMax`
-
+&nbsp;
 * Shifts		-	The object output from `StructureMax`
 
 * prefix		-	A prefix to the saved file, can include directory address too. File name format is 'prefix.shifts'
-
+&nbsp;
 Use:
 
 ```
 SaveShifts(myShifts, "testSamp")
 ```
-
+&nbsp;
 Output:
 
 A file containing alignment shift data that can be loaded later.
-
 &nbsp;
-
 &nbsp;
-
-
+&nbsp;
 ####`LoadShifts(filename)`
 
 Utility function to re-load the alignment shifts from file. Shifts saved and re-loaded in the way CANNOT be used with `PlotStructureMax`
-
+&nbsp;
 * filename		-	Path to, and name of, a file saved using `SaveShifts`. This will end in '.shifts'.
-
+&nbsp;
 Use:
 
 ```
 myShifts = LoadShifts(myShifts, "Some_Folder/testSamp.shifts")
 ```
-
+&nbsp;
 Output:
 
-A Shifts object, that can be used with `ApplyStructMax` and `ApplyDualStructMax`
-
+A file containing alignment shift data that can be loaded later.
 &nbsp;
-
 &nbsp;
-
-
+&nbsp;
 ####`FindPeaks(meanSample)`
 
 Utility function to assist in the identification of -1 and +1 peaks for structural maximum alignment. Searches for peaks around the centre of the region.
-
+&nbsp;
 * meanSample	-	The matrix to be used for `StructureMax`
-
+&nbsp;
 Use:
 
 ```
 FindPeaks(myShifts)
 ```
-
+&nbsp;
 Output:
 
 A short vector containing the indices of peaks found near the centre of the region. May be helpful in identifying -1 and +1 peak indices for `StructureMax`
