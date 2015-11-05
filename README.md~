@@ -5,7 +5,6 @@ Post-processing and stats for chromatin structures
 
 At the moment these scripts have not been merged into a formal package.
 As I create generalized versions of the scripts I will upload them here.
-Please let me know if you find any bugs! (o.j.rimington@gmail.com)
 
 To use them, download the relevant scripts to you your working directory in R.
 Then: source("ScriptName.R")
