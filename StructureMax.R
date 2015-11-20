@@ -7,7 +7,7 @@ StructureMax <- function(MeanSample, PeakL, PeakR, prealign=TRUE, binSize=10, st
 	l1Entries <- length(MeanSample[,1])
 	
 	officialTestRange <- 100
-	basesFromPeakToSkip <- 10
+	basesFromPeakToSkip <- 5
 	x <- 1:l1Len
 	scopeWidth <- officialTestRange/binSize
 	lb2 <- PeakR - scopeWidth
